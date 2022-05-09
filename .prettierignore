@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+coverage
+
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+# Ignore all HTML files:
+*.html
+*.csv
+
+package.json
+package-lock.json
+yarn.lock
+dist
