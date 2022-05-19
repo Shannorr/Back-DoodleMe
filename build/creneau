@@ -1,0 +1,25 @@
+module.exports  = class Creneau {
+
+    //constructor
+
+    constructor(evenement, id, date, heureDebut, nbRepPositives) {
+        this.evenement = evenement;
+        this.id = id;
+        this.date = date;
+        this.heureDebut = heureDebut;
+        this.nbRepPositives = nbRepPositives;
+    }
+
+    //getter de la classe 
+    getDate() {return this.date;}
+    getHeureDebut() {return this.heureDebut;}
+    getNbRepPositives() {return this.nbRepPosit;}
+    getId() {return this.id;}
+
+    //Setter de la classe
+    setDate(date) {this.date = date;}
+    setHeureDebut(heureDebut) {this.heureDebut = heureDebut;}
+    
+
+
+}
