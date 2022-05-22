@@ -13,7 +13,10 @@ const pool = new pg_1.Pool({
     port: db_config_json_1.default.port,
 });
 module.exports = {
-    query: (text, params, callback) => {
+    querywithparameters: (text, params, callback) => {
         return pool.query(text, params, callback);
     },
+    querywithoutparameters: (text, callback) => {
+        return pool.query(text, callback);
+    }
 };

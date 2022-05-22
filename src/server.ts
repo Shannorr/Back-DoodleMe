@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { getAllUsers } from "./routes/users";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -22,7 +23,7 @@ app.get("/", (req : Request, res : Response) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require('./routes/users')(app)
+getAllUsers(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

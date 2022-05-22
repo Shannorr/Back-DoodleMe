@@ -5,14 +5,24 @@ import { Request, Response } from "express"
 // and not requiring node-postgres directly
 const db = require('../db/postgre')
 
-module.exports = (app : any) => {
+export function getAllUsers (app : any) {
   app.get('/users', (req : Request, res: Response, next : any ) => {
-    db.query('SELECT * FROM data.users', '', (err : string, result : any) => {
+    db.querywithoutparameters('SELECT * FROM data.users', (err : string, result : any) => {
       if (err) {
         return next(err)
       }
       res.status(200).send(result.rows)
     })
-})
+  })
 }
 
+export function login (app : any) {
+  app.post('/login', (req : Request, res: Response, next : any ) => {
+    db.querywithoutparameters('SELECT * FROM data.users', (err : string, result : any) => {
+      if (err) {
+        return next(err)
+      }
+      res.status(200).send(result.rows)
+    })
+  })
+}

@@ -10,7 +10,11 @@ const pool : any = new Pool({
 })
 
 module.exports = {
-  query: (text: string, params: string, callback : void) => {
+  querywithparameters: (text: string, params: string, callback : void) => {
     return pool.query(text, params, callback)
   },
+  querywithoutparameters: (text: string, callback : void) => {
+    return pool.query(text, callback)
+  }
+
 }
