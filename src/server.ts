@@ -1,25 +1,31 @@
-import express from "express";
-import bodyParser from "body-parser";
-const db = require('./db/postgre')
+import { Request, Response } from "express";
 
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
-const port = 3000;
 
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
 
-app.get("/", (req, res) => {
-  res.json({ info: 'Node.js, Express, and Postgres API' })
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// simple route
+app.get("/", (req : Request, res : Response) => {
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
-app.get("/users", db.getUsers);
+require('./routes/users')(app)
 
-app.listen(port, () =>
-  console.log(`Notre application Node est démarrée sur http://localhost:${port}`)
-);
- 
-  
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port http://localhost:${PORT}.`);
+});
