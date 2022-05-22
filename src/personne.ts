@@ -1,11 +1,15 @@
-module.exports = class Personne {
+export class Personne {
+    id: number;
+    nomUser : string;
+    nom : string;
+    prenom : string;
 
 
     //constructeur de la classe
-    constructor(id, nomUser, nom, prenom, ) {
+    constructor(id : number, nomUser : string, prenom : string, nom : string ) {
         this.id = id;
         this.nomUser = nomUser;
-        this.nom = nom
+        this.nom = nom;
         this.prenom = prenom;
     }
 
@@ -22,11 +26,11 @@ module.exports = class Personne {
     getId() { return this.id; }
 
     //Setter de la classe
-    setId(id) { this.id = id; }
+    setId(id : number) { this.id = id; }
 
-    setPrenom(prenom) { this.prenom =prenom;}
+    setPrenom(prenom : string) { this.prenom =prenom;}
 
-    setNom(nom) { this.nom =nom;}
+    setNom(nom : string) { this.nom =nom;}
     
 
 
