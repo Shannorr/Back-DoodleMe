@@ -9,12 +9,11 @@ const pool : any = new Pool({
   port: config.port,
 })
 
-module.exports = {
-  querywithparameters: (text: string, params: string, callback : void) => {
-    return pool.query(text, params, callback)
-  },
-  querywithoutparameters: (text: string, callback : void) => {
-    return pool.query(text, callback)
-  }
-
+export function querywithparameters (text: string, params: string[], callback : any) {
+  return pool.query(text, params, callback)
 }
+
+export function querywithoutparameters (text: string, callback : any) {
+  return pool.query(text, callback);
+}
+

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { routesLogin } from "./routes/auth.routes";
 import { getAllUsers } from "./routes/users";
 
 const express = require("express");
@@ -24,6 +25,7 @@ app.get("/", (req : Request, res : Response) => {
 });
 
 getAllUsers(app);
+routesLogin(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

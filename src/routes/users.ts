@@ -16,13 +16,3 @@ export function getAllUsers (app : any) {
   })
 }
 
-export function login (app : any) {
-  app.post('/login', (req : Request, res: Response, next : any ) => {
-    db.querywithoutparameters('SELECT * FROM data.users', (err : string, result : any) => {
-      if (err) {
-        return next(err)
-      }
-      res.status(200).send(result.rows)
-    })
-  })
-}
