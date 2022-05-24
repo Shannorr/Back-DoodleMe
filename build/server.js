@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_routes_1 = require("./routes/auth.routes");
-const users_1 = require("./routes/users");
+const createEvent_1 = require("./routes/createEvent");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
 });
-users_1.getAllUsers(app);
 auth_routes_1.routesLogin(app);
+createEvent_1.createEvent(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

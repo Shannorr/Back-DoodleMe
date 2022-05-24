@@ -1,3 +1,4 @@
+DROP TABLE data.events;
 DROP TABLE data.rolesxusers;
 DROP TABLE data.roles;
 DROP TABLE data.users;
@@ -27,6 +28,15 @@ CREATE TABLE data.rolesxusers
   idUser DECIMAL,
 
   PRIMARY KEY (idRole, idUser)
+);
+
+CREATE TABLE data.events
+(
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(30),
+  description VARCHAR(120),
+  cloture boolean,
+  createur DECIMAL
 );
 
 INSERT INTO data.users
