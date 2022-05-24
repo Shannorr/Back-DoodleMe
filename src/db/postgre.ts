@@ -1,5 +1,6 @@
 import config from  '../configs/db.config.json';
 import { Pool } from 'pg';
+import { IPersonne } from '../models/personne';
 
 const pool : any = new Pool({
   user: config.USER,
@@ -9,11 +10,11 @@ const pool : any = new Pool({
   port: config.port,
 })
 
-export function querywithparameters (text: string, params: string[], callback : any) {
-  return pool.query(text, params, callback)
+export function querywithparametersUser (text: string, params: string[]) : Promise<any> {
+  return pool.query(text, params)
 }
 
-export function querywithoutparameters (text: string, callback : any) {
-  return pool.query(text, callback);
+export function querywithoutparametersUser (text: string) : Promise<any>{
+  return pool.query(text);
 }
 

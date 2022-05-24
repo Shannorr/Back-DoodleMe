@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
-import { signup } from "../controllers/auth.controller";
-import { checkDuplicateUsernameOrEmail } from "../middlewares/verifySignUp";
+import { signin, signup } from "../controllers/auth.controller";
+import { checkBody, checkDuplicateUsername } from "../middlewares/verifySignUp";
+import { verifyToken } from "../middlewares/authJwt";
+import * as controller from "../controllers/user.controller"
 
 
 export function routesLogin (app : any) {
@@ -13,8 +15,16 @@ export function routesLogin (app : any) {
   });
   app.post(
     "/api/auth/signup",
-    checkDuplicateUsernameOrEmail,
+    checkBody,
+    checkDuplicateUsername,
     signup
   );
-  // app.post("/api/auth/signin", signin);
+  app.post("/api/auth/signin",
+    signin
+  );
+  app.get(
+    "/api/test/user",
+    verifyToken,
+    controller.userBoard
+  );
 };
