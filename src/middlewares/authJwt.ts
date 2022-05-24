@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import config from "../configs/auht.config.json"
+import * as config from "../configs/auth.config.json"
 const jwt = require("jsonwebtoken");
 
 export function verifyToken (req: any, res: Response, next: any) {

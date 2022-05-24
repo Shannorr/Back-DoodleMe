@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { routesLogin } from "./routes/auth.routes";
 import { createEvent } from "./routes/createEvent";
+import { getAllEvent } from "./routes/getAllEvent";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -26,6 +27,8 @@ app.get("/", (req : Request, res : Response) => {
 
 routesLogin(app);
 createEvent(app);
+getAllEvent(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

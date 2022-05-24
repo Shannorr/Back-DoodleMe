@@ -1,18 +1,10 @@
 // notice here I'm requiring my database adapter file
 import { querywithparametersUser } from "../db/postgre"
+import { IPersonne } from "../models/personne";
 
 
-export function getUserbyId (id : string) {
-  querywithparametersUser('SELECT * FROM data.users WHERE id = $1', [id])
-  .then((users) => {
-    return {
-      msg: "Get all users",
-      data: users.rows
-    };
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  
+export async function getUserbyId (id : string) : Promise<void>{
+  const res = await querywithparametersUser('SELECT * FROM data.users WHERE id = $1', [id]);
+  return res.rows[0];
 }
 

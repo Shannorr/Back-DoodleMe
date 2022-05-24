@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { querywithparametersUser } from "../db/postgre";
 import { getUserByUserName } from "../models/personne";
-import * as config from "../configs/auht.config.json";
+import * as config from "../configs/auth.config.json";
 
 export async function signup(req: Request, res : Response) {
     try {

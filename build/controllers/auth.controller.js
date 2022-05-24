@@ -36,7 +36,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const postgre_1 = require("../db/postgre");
 const personne_1 = require("../models/personne");
-const config = __importStar(require("../configs/auht.config.json"));
+const config = __importStar(require("../configs/auth.config.json"));
 function signup(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_routes_1 = require("./routes/auth.routes");
 const createEvent_1 = require("./routes/createEvent");
+const getAllEvent_1 = require("./routes/getAllEvent");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 auth_routes_1.routesLogin(app);
 createEvent_1.createEvent(app);
+getAllEvent_1.getAllEvent(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
