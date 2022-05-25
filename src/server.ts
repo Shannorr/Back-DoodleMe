@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import { routesLogin } from "./routes/auth.routes";
+import { createCreneau } from "./routes/createCreneau";
 import { createEvent } from "./routes/createEvent";
+import { getAllCreneauByEvent } from "./routes/getAllCreneauByEvent";
 import { getAllEvent } from "./routes/getAllEvent";
+import { getEventById } from "./routes/getEventById";
+import { getUserById } from "./routes/getUserById";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -22,13 +26,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req : Request, res : Response) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to dodleMe application." });
 });
 
+//Routes
 routesLogin(app);
 createEvent(app);
 getAllEvent(app);
-
+getEventById(app);
+getUserById(app);
+createCreneau(app);
+getAllCreneauByEvent(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,11 +1,12 @@
+DROP TABLE data.favoris;
+DROP TABLE data.reponses;
+DROP TABLE data.creneau;
 DROP TABLE data.events;
-DROP TABLE data.rolesxusers;
-DROP TABLE data.roles;
 DROP TABLE data.users;
 
 CREATE TABLE data.users
 (
-  id SERIAL PRIMARY KEY,
+  idUser SERIAL PRIMARY KEY,
   username VARCHAR(30),
   lastname VARCHAR(30),
   firstname VARCHAR(30),
@@ -14,49 +15,42 @@ CREATE TABLE data.users
 
 );
 
-CREATE TABLE data.roles
-(
-  id SERIAL PRIMARY KEY,
-  rolename VARCHAR(30),
-  UNIQUE(rolename)
-
-);
-
-CREATE TABLE data.rolesxusers
-(
-  idRole DECIMAL,
-  idUser DECIMAL,
-
-  PRIMARY KEY (idRole, idUser)
-);
-
 CREATE TABLE data.events
 (
-  id SERIAL PRIMARY KEY,
-  nom VARCHAR(30),
+  idEvent SERIAL PRIMARY KEY,
+  name VARCHAR(30),
   description VARCHAR(120),
   cloture boolean,
-  createur DECIMAL
+  idcreator INTEGER,
+  CONSTRAINT fk_events_idUser FOREIGN KEY (idcreator) REFERENCES data.users(idUser)
 );
 
-INSERT INTO data.users
-  (username, lastname, firstname, password)
-VALUES
-  ('Shadows', 'Jasobson', 'Nicolas', 'nicolas'),
-  ('Fablito', 'Brandl', 'Fabian', 'fabian'),
-  ('Shan', 'Pessegue', 'Theo', 'theo');
+CREATE TABLE data.creneau
+(
+  idCreneau SERIAL,
+  date Date,
+  heureDebut Time,
+  nbRepPositive INTEGER,
+  idEvent INTEGER,
+  PRIMARY KEY (idCreneau),
+  CONSTRAINT fk_creneau_idEvent FOREIGN KEY (idEvent) REFERENCES data.events(idEvent)
+);
 
-INSERT INTO  data.roles
-  (rolename)
-VALUES
-  ('ADMIN'),
-  ('USER');
+CREATE TABLE data.favoris
+(
+  idEvent INTEGER,
+  idUser INTEGER,
+  PRIMARY KEY(idEvent, idUser),
+  CONSTRAINT fk_favoris_idUser FOREIGN KEY (idUser) REFERENCES data.users(idUser),
+  CONSTRAINT fk_favoris_idEvent FOREIGN KEY (idEvent) REFERENCES data.events(idEvent)
+);
 
-INSERT INTO data.rolesxusers
-  (idRole, idUser)
-VALUES
-  (1, 1)
-
-
-select *
-from data.users;
+CREATE TABLE data.reponses
+(
+  idCreneau INTEGER,
+  idUser INTEGER,
+  reponse boolean,
+  PRIMARY KEY(idCreneau, idUser),
+  CONSTRAINT fk_reponses_idUser FOREIGN KEY (idUser) REFERENCES data.users(idUser),
+  CONSTRAINT fk_reponses_idCreneau FOREIGN KEY (idCreneau) REFERENCES data.creneau(idCreneau)
+);

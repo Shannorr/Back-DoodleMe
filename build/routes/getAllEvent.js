@@ -7,7 +7,6 @@ function getAllEvent(app) {
     app.get('/events', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithoutparametersUser('SELECT * FROM data.events')
             .then((events) => {
-            console.log(events);
             return res.status(200).json({
                 msg: "Event created",
                 data: events.rows

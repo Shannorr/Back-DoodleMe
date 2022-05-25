@@ -4,7 +4,7 @@ import { IPersonne } from "../models/personne";
 
 
 export async function getUserbyId (id : string) : Promise<void>{
-  const res = await querywithparametersUser('SELECT * FROM data.users WHERE id = $1', [id]);
+  const res = await querywithparametersUser('SELECT * FROM data.users WHERE idUser = $1', [id]);
   return res.rows[0];
 }
 

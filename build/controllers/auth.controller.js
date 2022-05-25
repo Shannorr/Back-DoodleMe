@@ -70,11 +70,11 @@ function signin(req, res) {
                         message: "Invalid Password!"
                     });
                 }
-                const token = jsonwebtoken_1.default.sign({ id: user.id }, config.secret, {
+                const token = jsonwebtoken_1.default.sign({ id: user.iduser }, config.secret, {
                     expiresIn: 15000
                 });
                 return res.status(200).send({
-                    id: user.id,
+                    id: user.iduser,
                     username: user.username,
                     lastname: user.lastname,
                     firstname: user.firstname,

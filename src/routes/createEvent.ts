@@ -1,16 +1,15 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
-import { checkBodyCreateEvent } from "../middlewares/event";
-import { getUserbyId } from "./users";
+import { checkBodyCreateEvent } from "../middlewares/event";  
 
 
 export function createEvent (app : any) {
   app.post('/events', verifyToken, checkBodyCreateEvent, (req : Request, res: Response, next : any ) => {
-    querywithparametersUser('INSERT INTO data.events (nom, description, cloture, createur) VALUES ($1, $2, $3, $4)', 
+    querywithparametersUser('INSERT INTO data.events (name, description, cloture, idcreator) VALUES ($1, $2, $3, $4)', 
     [req.body.name, req.body.description, req.body.cloture, req.body.idcreator]
     )
-    .then(async (users) => {
+    .then(() => {
       return res.status(200).json({
         msg: "Event created",
         data: {
