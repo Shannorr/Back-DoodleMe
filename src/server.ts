@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
 import { routesLogin } from "./routes/auth.routes";
+import { closeEvent } from "./routes/clotureEvent";
 import { createCreneau } from "./routes/createCreneau";
 import { createEvent } from "./routes/createEvent";
+import { createFavoris } from "./routes/createFavoris";
+import { createReponse } from "./routes/createReponse";
 import { getAllCreneauByEvent } from "./routes/getAllCreneauByEvent";
 import { getAllEvent } from "./routes/getAllEvent";
 import { getEventById } from "./routes/getEventById";
@@ -37,6 +40,9 @@ getEventById(app);
 getUserById(app);
 createCreneau(app);
 getAllCreneauByEvent(app);
+createReponse(app);
+closeEvent(app);
+createFavoris(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

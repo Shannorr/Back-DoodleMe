@@ -1,8 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_routes_1 = require("./routes/auth.routes");
+const clotureEvent_1 = require("./routes/clotureEvent");
 const createCreneau_1 = require("./routes/createCreneau");
 const createEvent_1 = require("./routes/createEvent");
+const createFavoris_1 = require("./routes/createFavoris");
+const createReponse_1 = require("./routes/createReponse");
 const getAllCreneauByEvent_1 = require("./routes/getAllCreneauByEvent");
 const getAllEvent_1 = require("./routes/getAllEvent");
 const getEventById_1 = require("./routes/getEventById");
@@ -31,6 +34,9 @@ getEventById_1.getEventById(app);
 getUserById_1.getUserById(app);
 createCreneau_1.createCreneau(app);
 getAllCreneauByEvent_1.getAllCreneauByEvent(app);
+createReponse_1.createReponse(app);
+clotureEvent_1.closeEvent(app);
+createFavoris_1.createFavoris(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
