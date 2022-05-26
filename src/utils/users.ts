@@ -21,13 +21,13 @@ export async function addCreator (rows : IEvenementFavori[]) {
 }
 
 
-export async function addCreatorAndRefactor (rows : IEvenementFavori[]) {
+export async function addCreatorAndRefactor (rows : any[]) {
   const returnrep : IEvenement[] = [];
   for (let i = 0; i < rows.length; i++) {
     const resp : any = await getUserbyId(rows[i].idcreator)
     const rep : IEvenement = {
       id : rows[i].idevent,
-      nom : rows[i].nom,
+      nom : rows[i].name,
       description : rows[i].description ,
       cloture: rows[i].cloture,
       createur : {

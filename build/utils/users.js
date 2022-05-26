@@ -37,15 +37,14 @@ function addCreatorAndRefactor(rows) {
             const resp = yield getUserbyId(rows[i].idcreator);
             const rep = {
                 id: rows[i].idevent,
-                nom: rows[i].nom,
+                nom: rows[i].name,
                 description: rows[i].description,
                 cloture: rows[i].cloture,
                 createur: {
                     iduser: resp.iduser,
                     username: resp.username,
                     lastname: resp.lastname,
-                    firstname: resp.firstname,
-                    password: ""
+                    firstname: resp.firstname
                 }
             };
             returnrep.push(rep);
