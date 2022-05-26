@@ -34,8 +34,7 @@ export async function addCreatorAndRefactor (rows : IEvenementFavori[]) {
         iduser: resp.iduser,
         username: resp.username,
         lastname: resp.lastname,
-        firstname: resp.firstname,
-        password: ""
+        firstname: resp.firstname
       }
     }
     returnrep.push(rep);

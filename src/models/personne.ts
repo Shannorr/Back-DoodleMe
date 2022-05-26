@@ -5,7 +5,6 @@ export interface IPersonne {
   username: string;
   lastname: string;
   firstname: string;
-  password: string;
 }
 
 export async function getUserByUserName (username: string) : Promise<IPersonne> {
