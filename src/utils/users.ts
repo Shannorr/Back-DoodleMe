@@ -19,3 +19,16 @@ export async function addCreator (rows : IEvenementFavori[]) {
   return rows;
 }
 
+
+export async function addCreatorAndRefactor (rows : IEvenementFavori[]) {
+  for (let i = 0; i < rows.length; i++) {
+    console.log(rows[i].idcreator);
+    const resp = await getUserbyId(rows[i].idcreator)
+
+
+    
+    rows[i].idcreator = resp;
+  }
+  console.log(rows)
+  return rows;
+}
