@@ -9,7 +9,9 @@ const createReponse_1 = require("./routes/createReponse");
 const getAllCreneauByEvent_1 = require("./routes/getAllCreneauByEvent");
 const getAllEvent_1 = require("./routes/getAllEvent");
 const getEventById_1 = require("./routes/getEventById");
+const getFavorisEventByIdUSer_1 = require("./routes/getFavorisEventByIdUSer");
 const getUserById_1 = require("./routes/getUserById");
+const getUserByidCreneau_1 = require("./routes/getUserByidCreneau");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -37,6 +39,8 @@ getAllCreneauByEvent_1.getAllCreneauByEvent(app);
 createReponse_1.createReponse(app);
 clotureEvent_1.closeEvent(app);
 createFavoris_1.createFavoris(app);
+getUserByidCreneau_1.getUserByIdCreneau(app);
+getFavorisEventByIdUSer_1.getFavorisEventByIdUser(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

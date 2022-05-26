@@ -8,7 +8,9 @@ import { createReponse } from "./routes/createReponse";
 import { getAllCreneauByEvent } from "./routes/getAllCreneauByEvent";
 import { getAllEvent } from "./routes/getAllEvent";
 import { getEventById } from "./routes/getEventById";
+import { getFavorisEventByIdUser } from "./routes/getFavorisEventByIdUSer";
 import { getUserById } from "./routes/getUserById";
+import { getUserByIdCreneau } from "./routes/getUserByidCreneau";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -43,6 +45,8 @@ getAllCreneauByEvent(app);
 createReponse(app);
 closeEvent(app);
 createFavoris(app);
+getUserByIdCreneau(app);
+getFavorisEventByIdUser(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

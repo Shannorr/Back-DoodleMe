@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
+import { addCreator } from "../utils/users";
 
 
 export function getEventById (app : any) {
   app.get('/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.events where idEvent = $1', [req.params.idE])
-    .then((events) => {
+    .then(async (events) => {
       if (events.rowCount === 0) {
         return res.status(400).json({
           msg: `Pas d'event trouvé avec cet id : ${req.params.idE}`
@@ -14,7 +15,7 @@ export function getEventById (app : any) {
       }
       return res.status(200).json({
         msg: `Get Event : ${req.params.idE}`,
-        data: events.rows
+        data: await addCreator(events.rows)
         
       })
     })

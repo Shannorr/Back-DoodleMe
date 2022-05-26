@@ -10,6 +10,8 @@ export function createReponse (app : any) {
     [req.body.idCreneau, req.body.idUser, req.body.reponse]
     )
     .then(() => {
+
+      // gérer le nombre de réponse positive
       return res.status(200).json({
         msg: "Event created",
         data: {

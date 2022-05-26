@@ -9,13 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserbyId = void 0;
+exports.addCreator = void 0;
 // notice here I'm requiring my database adapter file
 const postgre_1 = require("../db/postgre");
 function getUserbyId(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield postgre_1.querywithparametersUser('SELECT * FROM data.users WHERE idUser = $1', [id]);
+        const res = yield postgre_1.querywithparametersUser('SELECT iduser, username, lastname, firstname FROM data.users WHERE idUser = $1', [id]);
         return res.rows[0];
     });
 }
-exports.getUserbyId = getUserbyId;
+function addCreator(rows) {
+    return __awaiter(this, void 0, void 0, function* () {
+        for (let i = 0; i < rows.length; i++) {
+            console.log(rows[i].idcreator);
+            const resp = yield getUserbyId(rows[i].idcreator);
+            rows[i].idcreator = resp;
+        }
+        console.log(rows);
+        return rows;
+    });
+}
+exports.addCreator = addCreator;

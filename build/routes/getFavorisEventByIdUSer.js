@@ -9,28 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEventById = void 0;
+exports.getFavorisEventByIdUser = void 0;
 const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const users_1 = require("../utils/users");
-function getEventById(app) {
-    app.get('/events/:idE', authJwt_1.verifyToken, (req, res, next) => {
-        postgre_1.querywithparametersUser('SELECT * FROM data.events where idEvent = $1', [req.params.idE])
+function getFavorisEventByIdUser(app) {
+    app.get('/favoris/event/:idU', authJwt_1.verifyToken, (req, res, next) => {
+        postgre_1.querywithparametersUser('select u.iduser, e.idevent, e.name, e.description, e.cloture, e.idcreator from data.users u, data.events e, data.favoris f where u.iduser = $1 and f.iduser = u.iduser and e.idevent = f.idevent;', [req.params.idU])
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             if (events.rowCount === 0) {
                 return res.status(400).json({
-                    msg: `Pas d'event trouvé avec cet id : ${req.params.idE}`
+                    msg: `Pas d'user trouvé avec cet id : ${req.params.idU}`
                 });
             }
             return res.status(200).json({
-                msg: `Get Event : ${req.params.idE}`,
+                msg: `Get User : ${req.params.idU}`,
                 data: yield users_1.addCreator(events.rows)
             });
         }))
             .catch((error) => {
-            const message = 'Les events n\'ont pas pu être récupérer';
+            const message = 'Le user n\'a pas pu être récupérer';
             res.status(500).json({ message, data: error });
         });
     });
 }
-exports.getEventById = getEventById;
+exports.getFavorisEventByIdUser = getFavorisEventByIdUser;
