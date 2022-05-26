@@ -32,13 +32,26 @@ function addCreator(rows) {
 exports.addCreator = addCreator;
 function addCreatorAndRefactor(rows) {
     return __awaiter(this, void 0, void 0, function* () {
+        const returnrep = [];
         for (let i = 0; i < rows.length; i++) {
-            console.log(rows[i].idcreator);
             const resp = yield getUserbyId(rows[i].idcreator);
-            rows[i].idcreator = resp;
+            console.log(resp);
+            const rep = {
+                id: rows[i].idevent,
+                nom: rows[i].nom,
+                description: rows[i].description,
+                cloture: rows[i].cloture,
+                createur: {
+                    iduser: resp.iduser,
+                    username: resp.username,
+                    lastname: resp.lastname,
+                    firstname: resp.firstname,
+                    password: ""
+                }
+            };
+            returnrep.push(rep);
         }
-        console.log(rows);
-        return rows;
+        return returnrep;
     });
 }
 exports.addCreatorAndRefactor = addCreatorAndRefactor;

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { IEvenementFavori } from "../models/favorisEvent";
-import { addCreator } from "../utils/users";
+import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
 export function getFavorisEventByIdUser (app : any) {
   app.get('/api/favoris/event/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
@@ -15,7 +15,7 @@ export function getFavorisEventByIdUser (app : any) {
       }
       return res.status(200).json({
         msg: `Get User : ${req.params.idU}`,
-        data: await addCreator(events.rows)
+        data: await addCreatorAndRefactor(events.rows)
         
       })
     })

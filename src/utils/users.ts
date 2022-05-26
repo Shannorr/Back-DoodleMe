@@ -1,5 +1,6 @@
 // notice here I'm requiring my database adapter file
 import { querywithparametersUser } from "../db/postgre"
+import { IEvenement } from "../models/event";
 import { IEvenementFavori } from "../models/favorisEvent";
 import { IPersonne } from "../models/personne";
 
@@ -21,14 +22,25 @@ export async function addCreator (rows : IEvenementFavori[]) {
 
 
 export async function addCreatorAndRefactor (rows : IEvenementFavori[]) {
+  const returnrep : IEvenement[] = [];
   for (let i = 0; i < rows.length; i++) {
-    console.log(rows[i].idcreator);
-    const resp = await getUserbyId(rows[i].idcreator)
-
-
-    
-    rows[i].idcreator = resp;
+    const resp : any = await getUserbyId(rows[i].idcreator)
+    console.log(resp);
+    const rep : IEvenement = {
+      id : rows[i].idevent,
+      nom : rows[i].nom,
+      description : rows[i].description ,
+      cloture: rows[i].cloture,
+      createur : {
+        iduser: resp.iduser,
+        username: resp.username,
+        lastname: resp.lastname,
+        firstname: resp.firstname,
+        password: ""
+      }
+    }
+    returnrep.push(rep);
   }
-  console.log(rows)
-  return rows;
+  
+  return returnrep;
 }

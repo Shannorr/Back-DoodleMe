@@ -24,7 +24,7 @@ function getFavorisEventByIdUser(app) {
             }
             return res.status(200).json({
                 msg: `Get User : ${req.params.idU}`,
-                data: yield users_1.addCreator(events.rows)
+                data: yield users_1.addCreatorAndRefactor(events.rows)
             });
         }))
             .catch((error) => {

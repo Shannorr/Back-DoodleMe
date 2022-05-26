@@ -42,7 +42,6 @@ getEventById(app);
 getUserById(app);
 createCreneau(app);
 getAllCreneauByEvent(app);
-createReponse(app);
 closeEvent(app);
 createFavoris(app);
 getUserByIdCreneau(app);
