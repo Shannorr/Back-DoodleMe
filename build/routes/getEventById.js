@@ -14,7 +14,7 @@ const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const users_1 = require("../utils/users");
 function getEventById(app) {
-    app.get('/events/:idE', authJwt_1.verifyToken, (req, res, next) => {
+    app.get('/api/events/:idE', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithparametersUser('SELECT * FROM data.events where idEvent = $1', [req.params.idE])
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             if (events.rowCount === 0) {

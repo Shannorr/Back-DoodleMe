@@ -4,7 +4,7 @@ exports.getUserByIdCreneau = void 0;
 const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 function getUserByIdCreneau(app) {
-    app.get('/users/creneau/:idC', authJwt_1.verifyToken, (req, res, next) => {
+    app.get('/api/users/creneau/:idC', authJwt_1.verifyToken, (req, res, next) => {
         console.log(req.params.idC);
         postgre_1.querywithparametersUser('select u.iduser, u.username, u.lastname, u.firstname, c.idcreneau from data.users u, data.creneau c, data.reponses r where c.idcreneau = $1 and r.iduser = u.iduser and c.idcreneau = r.idcreneau;', [req.params.idC])
             .then((events) => {

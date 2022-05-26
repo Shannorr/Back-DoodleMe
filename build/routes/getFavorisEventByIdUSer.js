@@ -14,7 +14,7 @@ const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const users_1 = require("../utils/users");
 function getFavorisEventByIdUser(app) {
-    app.get('/favoris/event/:idU', authJwt_1.verifyToken, (req, res, next) => {
+    app.get('/api/favoris/event/:idU', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithparametersUser('select u.iduser, e.idevent, e.name, e.description, e.cloture, e.idcreator from data.users u, data.events e, data.favoris f where u.iduser = $1 and f.iduser = u.iduser and e.idevent = f.idevent;', [req.params.idU])
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             if (events.rowCount === 0) {

@@ -4,7 +4,7 @@ import { verifyToken } from "../middlewares/authJwt";
 import { addCreator } from "../utils/users";
 
 export function getAllEvent (app : any) {
-  app.get('/events', verifyToken, (req : Request, res: Response, next : any ) => {
+  app.get('/api/events', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithoutparametersUser('SELECT * FROM data.events')
     .then(async (events) => {
       return res.status(200).json({

@@ -5,7 +5,7 @@ import { addCreator } from "../utils/users";
 
 
 export function getEventById (app : any) {
-  app.get('/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
+  app.get('/api/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.events where idEvent = $1', [req.params.idE])
     .then(async (events) => {
       if (events.rowCount === 0) {

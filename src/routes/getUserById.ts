@@ -3,7 +3,7 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 
 export function getUserById (app : any) {
-  app.get('/users/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
+  app.get('/api/users/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.users where idUser = $1', [req.params.idU])
     .then((events) => {
       if (events.rowCount === 0) {

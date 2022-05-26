@@ -4,7 +4,7 @@ import { verifyToken } from "../middlewares/authJwt";
 
 
 export function closeEvent (app : any) {
-  app.patch('/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
+  app.patch('/api/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser(
       'UPDATE data.events SET cloture = true WHERE idevent = $1', 
       [req.params.idE]

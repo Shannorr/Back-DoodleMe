@@ -5,7 +5,7 @@ import { checkBodyCreateReponse } from "../middlewares/reponse";
 
 
 export function createReponse (app : any) {
-  app.post('/reponse', verifyToken, checkBodyCreateReponse, (req : Request, res: Response, next : any ) => {
+  app.post('/api/reponse', verifyToken, checkBodyCreateReponse, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', 
     [req.body.idCreneau, req.body.idUser, req.body.reponse]
     )

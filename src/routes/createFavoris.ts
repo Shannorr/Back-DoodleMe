@@ -5,7 +5,7 @@ import { checkBodyCreateFavoris } from "../middlewares/favoris";
 
 
 export function createFavoris (app : any) {
-  app.post('/favoris', verifyToken, checkBodyCreateFavoris, (req : Request, res: Response, next : any ) => {
+  app.post('/api/favoris', verifyToken, checkBodyCreateFavoris, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('INSERT INTO data.favoris (idEvent, idUser) VALUES ($1, $2)', 
     [req.body.idEvent, req.body.idUser]
     )

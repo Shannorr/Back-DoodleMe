@@ -5,7 +5,7 @@ import { checkBodyCreateCreneau } from "../middlewares/creneau";
 
 
 export function createCreneau (app : any) {
-  app.post('/creneau', verifyToken, checkBodyCreateCreneau, (req : Request, res: Response, next : any ) => {
+  app.post('/api/creneau', verifyToken, checkBodyCreateCreneau, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('INSERT INTO data.creneau (date, heureDebut, nbRepPositive, idEvent) VALUES ($1, $2, 0, $3)', 
     [req.body.date, req.body.heureDebut, req.body.idEvent]
     )

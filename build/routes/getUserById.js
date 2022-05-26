@@ -4,7 +4,7 @@ exports.getUserById = void 0;
 const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 function getUserById(app) {
-    app.get('/users/:idU', authJwt_1.verifyToken, (req, res, next) => {
+    app.get('/api/users/:idU', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithparametersUser('SELECT * FROM data.users where idUser = $1', [req.params.idU])
             .then((events) => {
             if (events.rowCount === 0) {

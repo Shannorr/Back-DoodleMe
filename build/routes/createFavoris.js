@@ -5,7 +5,7 @@ const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const favoris_1 = require("../middlewares/favoris");
 function createFavoris(app) {
-    app.post('/favoris', authJwt_1.verifyToken, favoris_1.checkBodyCreateFavoris, (req, res, next) => {
+    app.post('/api/favoris', authJwt_1.verifyToken, favoris_1.checkBodyCreateFavoris, (req, res, next) => {
         postgre_1.querywithparametersUser('INSERT INTO data.favoris (idEvent, idUser) VALUES ($1, $2)', [req.body.idEvent, req.body.idUser])
             .then(() => {
             return res.status(200).json({

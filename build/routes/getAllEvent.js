@@ -14,7 +14,7 @@ const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const users_1 = require("../utils/users");
 function getAllEvent(app) {
-    app.get('/events', authJwt_1.verifyToken, (req, res, next) => {
+    app.get('/api/events', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithoutparametersUser('SELECT * FROM data.events')
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             return res.status(200).json({

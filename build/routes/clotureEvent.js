@@ -4,7 +4,7 @@ exports.closeEvent = void 0;
 const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 function closeEvent(app) {
-    app.patch('/events/:idE', authJwt_1.verifyToken, (req, res, next) => {
+    app.patch('/api/events/:idE', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithparametersUser('UPDATE data.events SET cloture = true WHERE idevent = $1', [req.params.idE])
             .then(() => {
             return res.status(200).json({

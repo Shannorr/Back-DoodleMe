@@ -5,7 +5,7 @@ const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
 const reponse_1 = require("../middlewares/reponse");
 function createReponse(app) {
-    app.post('/reponse', authJwt_1.verifyToken, reponse_1.checkBodyCreateReponse, (req, res, next) => {
+    app.post('/api/reponse', authJwt_1.verifyToken, reponse_1.checkBodyCreateReponse, (req, res, next) => {
         postgre_1.querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', [req.body.idCreneau, req.body.idUser, req.body.reponse])
             .then(() => {
             // gérer le nombre de réponse positive
