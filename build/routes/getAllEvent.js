@@ -18,7 +18,7 @@ function getAllEvent(app) {
         postgre_1.querywithoutparametersUser('SELECT * FROM data.events')
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             return res.status(200).json({
-                msg: "Event created",
+                msg: "get Event",
                 data: yield users_1.addCreatorAndRefactor(events.rows)
             });
         }))

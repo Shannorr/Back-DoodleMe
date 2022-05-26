@@ -8,7 +8,7 @@ export function getAllEvent (app : any) {
     querywithoutparametersUser('SELECT * FROM data.events')
     .then(async (events) => {
       return res.status(200).json({
-        msg: "Event created",
+        msg: "get Event",
         data: await addCreatorAndRefactor(events.rows)
         
       })

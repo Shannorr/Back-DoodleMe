@@ -46,7 +46,7 @@ export async function signin(req: Request, res : Response) {
                 });
             
             return res.status(200).send({
-                id: user.iduser,
+                iduser: user.iduser,
                 username: user.username,
                 lastname: user.lastname,
                 firstname: user.firstname,

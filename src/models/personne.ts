@@ -7,6 +7,6 @@ export interface IPersonne {
   firstname: string;
 }
 
-export async function getUserByUserName (username: string) : Promise<IPersonne> {
+export async function getUserByUserName (username: string) : Promise<any> {
   return querywithparametersUser("SELECT * FROM data.users where username = $1", [username]).then((result) => result.rows[0]);
 }

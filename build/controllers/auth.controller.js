@@ -74,7 +74,7 @@ function signin(req, res) {
                     expiresIn: 15000
                 });
                 return res.status(200).send({
-                    id: user.iduser,
+                    iduser: user.iduser,
                     username: user.username,
                     lastname: user.lastname,
                     firstname: user.firstname,
