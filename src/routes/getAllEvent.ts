@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { querywithoutparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
-import { addCreator } from "../utils/users";
+import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
 export function getAllEvent (app : any) {
   app.get('/api/events', verifyToken, (req : Request, res: Response, next : any ) => {
@@ -9,7 +9,7 @@ export function getAllEvent (app : any) {
     .then(async (events) => {
       return res.status(200).json({
         msg: "Event created",
-        data: await addCreator(events.rows)
+        data: await addCreatorAndRefactor(events.rows)
         
       })
     })

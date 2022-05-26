@@ -19,7 +19,7 @@ function getAllEvent(app) {
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             return res.status(200).json({
                 msg: "Event created",
-                data: yield users_1.addCreator(events.rows)
+                data: yield users_1.addCreatorAndRefactor(events.rows)
             });
         }))
             .catch((error) => {

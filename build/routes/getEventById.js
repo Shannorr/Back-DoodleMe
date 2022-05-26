@@ -24,7 +24,7 @@ function getEventById(app) {
             }
             return res.status(200).json({
                 msg: `Get Event : ${req.params.idE}`,
-                data: yield users_1.addCreator(events.rows)
+                data: yield users_1.addCreatorAndRefactor(events.rows)
             });
         }))
             .catch((error) => {

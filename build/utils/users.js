@@ -35,7 +35,6 @@ function addCreatorAndRefactor(rows) {
         const returnrep = [];
         for (let i = 0; i < rows.length; i++) {
             const resp = yield getUserbyId(rows[i].idcreator);
-            console.log(resp);
             const rep = {
                 id: rows[i].idevent,
                 nom: rows[i].nom,

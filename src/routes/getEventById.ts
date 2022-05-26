@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
-import { addCreator } from "../utils/users";
+import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
 
 export function getEventById (app : any) {
@@ -15,7 +15,7 @@ export function getEventById (app : any) {
       }
       return res.status(200).json({
         msg: `Get Event : ${req.params.idE}`,
-        data: await addCreator(events.rows)
+        data: await addCreatorAndRefactor(events.rows)
         
       })
     })

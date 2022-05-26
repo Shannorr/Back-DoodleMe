@@ -25,7 +25,6 @@ export async function addCreatorAndRefactor (rows : IEvenementFavori[]) {
   const returnrep : IEvenement[] = [];
   for (let i = 0; i < rows.length; i++) {
     const resp : any = await getUserbyId(rows[i].idcreator)
-    console.log(resp);
     const rep : IEvenement = {
       id : rows[i].idevent,
       nom : rows[i].nom,
