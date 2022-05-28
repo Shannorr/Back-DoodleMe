@@ -28,8 +28,8 @@ CREATE TABLE data.events
 CREATE TABLE data.creneau
 (
   idCreneau SERIAL,
-  date Date,
-  heureDebut Time,
+  date VARCHAR(30),
+  heureDebut VARCHAR(30),
   nbRepPositive INTEGER,
   idEvent INTEGER,
   PRIMARY KEY (idCreneau),

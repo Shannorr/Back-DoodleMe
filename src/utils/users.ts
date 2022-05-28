@@ -2,7 +2,6 @@
 import { querywithparametersUser } from "../db/postgre"
 import { IEvenement } from "../models/event";
 import { IEvenementFavori } from "../models/favorisEvent";
-import { IPersonne } from "../models/personne";
 
 
 async function getUserbyId (id : string) : Promise<void>{
