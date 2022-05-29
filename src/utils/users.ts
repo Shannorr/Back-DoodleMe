@@ -4,7 +4,7 @@ import { IEvenement } from "../models/event";
 import { IEvenementFavori } from "../models/favorisEvent";
 
 
-async function getUserbyId (id : string) : Promise<void>{
+export async function getUserbyId (id : string) : Promise<void>{
   const res = await querywithparametersUser('SELECT iduser, username, lastname, firstname FROM data.users WHERE idUser = $1', [id]);
   return res.rows[0];
 }
