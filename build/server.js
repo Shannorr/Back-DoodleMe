@@ -14,6 +14,7 @@ const getCreneauAvecLePlusGrandNbDeRep_1 = require("./routes/getCreneauAvecLePlu
 const getEventById_1 = require("./routes/getEventById");
 const getEventOuUserARepondu_1 = require("./routes/getEventOuUserARepondu");
 const getFavorisEventByIdUSer_1 = require("./routes/getFavorisEventByIdUSer");
+const getLastEventByIdUser_1 = require("./routes/getLastEventByIdUser");
 const getUserById_1 = require("./routes/getUserById");
 const getUserByidCreneau_1 = require("./routes/getUserByidCreneau");
 const express = require("express");
@@ -51,6 +52,7 @@ getFavorisEventByIdUSer_1.getFavorisEventByIdUser(app);
 getEventOuUserARepondu_1.getEventOuUserARepondu(app);
 getAllEventCreatedByIdUser_1.getAllEventCreatedByIdUser(app);
 getCreneauAvecLePlusGrandNbDeRep_1.getCreneauWithHighestResponse(app);
+getLastEventByIdUser_1.getLastEventByIdUser(app);
 // patch
 clotureEvent_1.closeEvent(app);
 // set port, listen for requests
