@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addCreatorAndRefactor = exports.addCreator = void 0;
+exports.addCreatorAndRefactorReponse = exports.addCreatorAndRefactor = exports.addCreator = void 0;
 // notice here I'm requiring my database adapter file
 const postgre_1 = require("../db/postgre");
 function getUserbyId(id) {
@@ -53,3 +53,36 @@ function addCreatorAndRefactor(rows) {
     });
 }
 exports.addCreatorAndRefactor = addCreatorAndRefactor;
+function addCreatorAndRefactorReponse(rows) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const returnrep = [];
+        for (let i = 0; i < rows.length; i++) {
+            const resp = yield getUserbyId(rows[i].idcreator);
+            const rep = {
+                creneau: {
+                    evenement: {
+                        id: rows[i].idvevent,
+                        nom: rows[i].name,
+                        description: rows[i].description,
+                        cloture: rows[i].cloture,
+                        createur: {
+                            iduser: resp.iduser,
+                            username: resp.username,
+                            lastname: resp.lastname,
+                            firstname: resp.firstname
+                        }
+                    },
+                    id: rows[i].idcreneau,
+                    date: rows[i].date,
+                    heureDebut: rows[i].heuredebut,
+                    nbRepPositive: rows[i].nbreppositive,
+                },
+                reponse: rows[i].reponse
+            };
+            returnrep.push(rep);
+        }
+        // console.log(returnrep);
+        return returnrep;
+    });
+}
+exports.addCreatorAndRefactorReponse = addCreatorAndRefactorReponse;

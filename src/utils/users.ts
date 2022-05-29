@@ -41,3 +41,35 @@ export async function addCreatorAndRefactor (rows : any[]) {
   
   return returnrep;
 }
+
+
+export async function addCreatorAndRefactorReponse (rows : any[]) {
+  const returnrep : IEvenement[] = [];
+  for (let i = 0; i < rows.length; i++) {
+    const resp : any = await getUserbyId(rows[i].idcreator)
+    const rep : any = {
+      creneau :  {
+        evenement: {
+          id: rows[i].idvevent,
+          nom: rows[i].name,
+          description: rows[i].description,
+          cloture: rows[i].cloture,
+          createur: {
+            iduser: resp.iduser,
+            username: resp.username,
+            lastname: resp.lastname,
+            firstname: resp.firstname
+          }
+        }, //copie de l'objet comme ça accès à toutes les données de l'event (pas juste l'id de l'event)
+        id: rows[i].idcreneau,
+        date: rows[i].date,
+        heureDebut: rows[i].heuredebut,
+        nbRepPositive: rows[i].nbreppositive,
+      },
+      reponse : rows[i].reponse
+    };
+    returnrep.push(rep);
+  }
+  // console.log(returnrep);
+  return returnrep;
+}

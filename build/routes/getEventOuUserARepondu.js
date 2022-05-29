@@ -15,7 +15,7 @@ const authJwt_1 = require("../middlewares/authJwt");
 const users_1 = require("../utils/users");
 function getEventOuUserARepondu(app) {
     app.get('/api/users/reponse/:idU', authJwt_1.verifyToken, (req, res, next) => {
-        postgre_1.querywithparametersUser('select distinct e.* from data.users u, data.creneau c, data.reponses r, data.events e where u.iduser = $1 AND u.iduser = r.iduser AND r.idcreneau = c.idcreneau AND c.idevent = e.idevent;', [req.params.idU])
+        postgre_1.querywithparametersUser('select distinct e.*, c.*, r.reponse from data.users u, data.creneau c, data.reponses r, data.events e where u.iduser = $1 AND u.iduser = r.iduser AND r.idcreneau = c.idcreneau AND c.idevent = e.idevent;', [req.params.idU])
             .then((events) => __awaiter(this, void 0, void 0, function* () {
             if (events.rowCount === 0) {
                 return res.status(400).json({
@@ -24,7 +24,7 @@ function getEventOuUserARepondu(app) {
             }
             return res.status(200).json({
                 msg: `Get Event : ${req.params.idU}`,
-                data: yield users_1.addCreatorAndRefactor(events.rows)
+                data: yield users_1.addCreatorAndRefactorReponse(events.rows)
             });
         }))
             .catch((error) => {
