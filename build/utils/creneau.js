@@ -15,7 +15,7 @@ const postgre_1 = require("../db/postgre");
 const users_1 = require("./users");
 function addCreatorAndRefactorCreneau(rows) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(rows);
+        // console.log(rows)
         const returnrep = [];
         for (let i = 0; i < rows.length; i++) {
             const eventContent = yield getEventById(rows[i].idevent);

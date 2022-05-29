@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCreneauWithHighestResponse = void 0;
 const postgre_1 = require("../db/postgre");
 const authJwt_1 = require("../middlewares/authJwt");
+const creneau_1 = require("../utils/creneau");
 function getCreneauWithHighestResponse(app) {
     app.get('/api/creneau/winner/:idE', authJwt_1.verifyToken, (req, res, next) => {
         postgre_1.querywithparametersUser('select e.* from data.creneau e where e.idevent = $1 AND e.nbreppositive = (SELECT MAX(nbreppositive) FROM data.creneau where idevent = e.idevent);', [req.params.idE])
@@ -23,7 +24,7 @@ function getCreneauWithHighestResponse(app) {
             }
             return res.status(200).json({
                 msg: `Get Event : ${req.params.idE}`,
-                data: events.rows
+                data: yield creneau_1.addCreatorAndRefactorCreneau(events.rows)
             });
         }))
             .catch((error) => {
