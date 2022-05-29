@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
+import { addCreatorAndRefactorCreneau } from "../utils/creneau";
 import { addCreatorAndRefactor } from "../utils/users";
 
 
@@ -15,7 +16,7 @@ export function getCreneauWithHighestResponse (app : any) {
       }
       return res.status(200).json({
         msg: `Get Event : ${req.params.idE}`,
-        data: events.rows
+        data: await addCreatorAndRefactorCreneau(events.rows)
         
       })
     })
