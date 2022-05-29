@@ -13,6 +13,7 @@ import { getCreneauWithHighestResponse } from "./routes/getCreneauAvecLePlusGran
 import { getEventById } from "./routes/getEventById";
 import { getEventOuUserARepondu } from "./routes/getEventOuUserARepondu";
 import { getFavorisEventByIdUser } from "./routes/getFavorisEventByIdUSer";
+import { getLastEventByIdUser } from "./routes/getLastEventByIdUser";
 import { getUserById } from "./routes/getUserById";
 import { getUserByIdCreneau } from "./routes/getUserByidCreneau";
 import { getReponseByiduserandidcreneau } from "./utils/reponse";
@@ -61,6 +62,7 @@ getFavorisEventByIdUser(app);
 getEventOuUserARepondu(app);
 getAllEventCreatedByIdUser(app);
 getCreneauWithHighestResponse(app);
+getLastEventByIdUser(app);
 
 // patch
 closeEvent(app);
