@@ -76,14 +76,17 @@ export async function addCreatorAndRefactorReponse (rows : any[]) {
 }
 
 export async function addCreatorAndRefactorUser (rows : any[]) {
-  const returnrep : IPersonne[] = [];
+  const returnrep : any[] = [];
   console.log(rows)
   for (let i = 0; i < rows.length; i++) {
     const rep : any = {
-      iduser: rows[i].iduser,
-      username: rows[i].username,
-      lastname: rows[i].lastname,
-      firstname: rows[i].firstname
+      personne : {
+        iduser: rows[i].iduser,
+        username: rows[i].username,
+        lastname: rows[i].lastname,
+        firstname: rows[i].firstname
+      },      
+      reponse : rows[i].reponse
     };
     returnrep.push(rep);
   }
