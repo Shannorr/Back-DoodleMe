@@ -10,12 +10,12 @@ export function createReponse (app : any) {
 
     // si ça n'existe pas en bd on rajoute et en fonction de la réponse on fait + ou - 
     const response = await getReponseByiduserandidcreneau(req.body.idUser, req.body.idCreneau);
+    console.log(response);
     if (!response) {
       querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', 
       [req.body.idCreneau, req.body.idUser, req.body.reponse]
       )
       .then(() => {
-        
         if (req.body.reponse === true) {
           ajouterUneReponsePositive(req.body.idCreneau);
         }
@@ -35,7 +35,7 @@ export function createReponse (app : any) {
       })
     } else { // si ça existe en bd on regarde si la réponse est là même
       if (req.body.reponse == response.reponse) {
-        res.status(500).json({msg : "Pas de modification apporté même réponse", data : response});
+        res.status(301).json({msg : "Pas de modification apporté même réponse", data : response});
       } else {
         if (req.body.reponse === true) {
           ajouterUneReponsePositive(req.body.idCreneau);

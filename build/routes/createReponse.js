@@ -18,6 +18,7 @@ function createReponse(app) {
     app.post('/api/reponse', authJwt_1.verifyToken, reponse_1.checkBodyCreateReponse, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
         // si ça n'existe pas en bd on rajoute et en fonction de la réponse on fait + ou - 
         const response = yield reponse_2.getReponseByiduserandidcreneau(req.body.idUser, req.body.idCreneau);
+        console.log(response);
         if (!response) {
             postgre_1.querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', [req.body.idCreneau, req.body.idUser, req.body.reponse])
                 .then(() => {
@@ -41,7 +42,7 @@ function createReponse(app) {
         }
         else { // si ça existe en bd on regarde si la réponse est là même
             if (req.body.reponse == response.reponse) {
-                res.status(500).json({ msg: "Pas de modification apporté même réponse", data: response });
+                res.status(301).json({ msg: "Pas de modification apporté même réponse", data: response });
             }
             else {
                 if (req.body.reponse === true) {

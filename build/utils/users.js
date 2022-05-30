@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addCreatorAndRefactorReponse = exports.addCreatorAndRefactor = exports.addCreator = void 0;
+exports.addCreatorAndRefactorReponse = exports.addCreatorAndRefactor = exports.addCreator = exports.getUserbyId = void 0;
 // notice here I'm requiring my database adapter file
 const postgre_1 = require("../db/postgre");
 function getUserbyId(id) {
@@ -18,6 +18,7 @@ function getUserbyId(id) {
         return res.rows[0];
     });
 }
+exports.getUserbyId = getUserbyId;
 function addCreator(rows) {
     return __awaiter(this, void 0, void 0, function* () {
         for (let i = 0; i < rows.length; i++) {

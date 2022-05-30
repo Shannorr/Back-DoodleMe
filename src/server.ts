@@ -10,13 +10,13 @@ import { getAllCreneauByEvent } from "./routes/getAllCreneauByEvent";
 import { getAllEvent } from "./routes/getAllEvent";
 import { getAllEventCreatedByIdUser } from "./routes/getAllEventCreatedByIdUser";
 import { getCreneauWithHighestResponse } from "./routes/getCreneauAvecLePlusGrandNbDeRep";
+import { getCreneauById } from "./routes/getCreneauById";
 import { getEventById } from "./routes/getEventById";
 import { getEventOuUserARepondu } from "./routes/getEventOuUserARepondu";
 import { getFavorisEventByIdUser } from "./routes/getFavorisEventByIdUSer";
 import { getLastEventByIdUser } from "./routes/getLastEventByIdUser";
 import { getUserById } from "./routes/getUserById";
 import { getUserByIdCreneau } from "./routes/getUserByidCreneau";
-import { getReponseByiduserandidcreneau } from "./utils/reponse";
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -63,6 +63,7 @@ getEventOuUserARepondu(app);
 getAllEventCreatedByIdUser(app);
 getCreneauWithHighestResponse(app);
 getLastEventByIdUser(app);
+getCreneauById(app);
 
 // patch
 closeEvent(app);
