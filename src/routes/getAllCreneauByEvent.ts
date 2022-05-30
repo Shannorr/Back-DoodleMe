@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
+import { addCreatorAndRefactorCreneau } from "../utils/creneau";
 
 
 export function getAllCreneauByEvent (app : any) {
   app.get('/api/creneau/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.creneau where idEvent = $1', [req.params.idE])
-    .then((events) => {
+    .then(async (events) => {
       if (events.rowCount === 0) {
         return res.status(400).json({
           msg: `Pas d'event trouvé avec cet id : ${req.params.idE}`
@@ -14,7 +15,7 @@ export function getAllCreneauByEvent (app : any) {
       }
       return res.status(200).json({
         msg: `Get Creneau : ${req.params.idE}`,
-        data: events.rows
+        data:  await addCreatorAndRefactorCreneau(events.rows)
         
       })
     })
