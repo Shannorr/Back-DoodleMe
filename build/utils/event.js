@@ -26,8 +26,8 @@ function getEventById(idevent) {
             createur: {
                 iduser: user.iduser,
                 username: user.username,
-                lastname: user.username,
-                firstname: user.username,
+                lastname: user.lastname,
+                firstname: user.firstname,
             }
         };
     });
