@@ -2,6 +2,7 @@
 import { querywithparametersUser } from "../db/postgre"
 import { IEvenement } from "../models/event";
 import { IEvenementFavori } from "../models/favorisEvent";
+import { IPersonne } from "../models/personne";
 
 
 export async function getUserbyId (id : string) : Promise<void>{
@@ -67,6 +68,22 @@ export async function addCreatorAndRefactorReponse (rows : any[]) {
         nbRepPositive: rows[i].nbreppositive,
       },
       reponse : rows[i].reponse
+    };
+    returnrep.push(rep);
+  }
+  // console.log(returnrep);
+  return returnrep;
+}
+
+export async function addCreatorAndRefactorUser (rows : any[]) {
+  const returnrep : IPersonne[] = [];
+  console.log(rows)
+  for (let i = 0; i < rows.length; i++) {
+    const rep : any = {
+      iduser: rows[i].iduser,
+      username: rows[i].username,
+      lastname: rows[i].lastname,
+      firstname: rows[i].firstname
     };
     returnrep.push(rep);
   }
