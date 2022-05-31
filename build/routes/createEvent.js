@@ -16,29 +16,35 @@ const event_1 = require("../middlewares/event");
 const event_2 = require("../utils/event");
 function createEvent(app) {
     app.post('/api/events', authJwt_1.verifyToken, event_1.checkBodyCreateEvent, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-        postgre_1.querywithparametersUser('INSERT INTO data.events (name, description, cloture, idcreator) VALUES ($1, $2, $3, $4)', [req.body.name, req.body.description, req.body.cloture, req.body.idcreator])
-            .then(() => __awaiter(this, void 0, void 0, function* () {
-            const creneauTab = req.body.creneauTab;
-            // console.log(creneauTab.length);
-            const event = yield event_2.getEventIdByName(req.body.name);
-            console.log(event);
-            for (let i = 0; i < creneauTab.length; i++) {
-                createCreneau(creneauTab[i].date, creneauTab[i].heureDebut, event.idevent);
-            }
-            return res.status(200).json({
-                msg: "Event created",
-                data: {
-                    "name": req.body.name,
-                    "description": req.body.description,
-                    "cloture": req.body.cloture,
-                    "creator": req.body.idcreator
+        if (yield event_2.getEventIdByName(req.body.name)) {
+            res.status(401).send({ msg: "Nom déjà utilisé" });
+        }
+        else {
+            console.log("ajout");
+            postgre_1.querywithparametersUser('INSERT INTO data.events (name, description, cloture, idcreator) VALUES ($1, $2, $3, $4)', [req.body.name, req.body.description, req.body.cloture, req.body.idcreator])
+                .then(() => __awaiter(this, void 0, void 0, function* () {
+                const creneauTab = req.body.creneauTab;
+                // console.log(creneauTab.length);
+                const event = yield event_2.getEventIdByName(req.body.name);
+                console.log(event);
+                for (let i = 0; i < creneauTab.length; i++) {
+                    createCreneau(creneauTab[i].date, creneauTab[i].heureDebut, event.idevent);
                 }
+                return res.status(200).json({
+                    msg: "Event created",
+                    data: {
+                        "name": req.body.name,
+                        "description": req.body.description,
+                        "cloture": req.body.cloture,
+                        "creator": req.body.idcreator
+                    }
+                });
+            }))
+                .catch((error) => {
+                const message = 'event n\' a pas pu etre rajouter';
+                res.status(500).json({ message, data: error });
             });
-        }))
-            .catch((error) => {
-            const message = 'event n\' a pas pu etre rajouter';
-            res.status(500).json({ message, data: error });
-        });
+        }
     }));
 }
 exports.createEvent = createEvent;
