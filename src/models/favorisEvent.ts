@@ -1,5 +1,6 @@
 import { IPersonne } from "./personne";
 
+// Interface Evenement Favori
 export interface IEvenementFavori {
     iduser: number;
     idevent: number;

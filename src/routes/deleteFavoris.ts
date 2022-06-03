@@ -3,7 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { checkBodyCreateFavoris } from "../middlewares/favoris";
 
-
+/**
+ * Route me permettant de delete un favoris
+ * @param app 
+ */
 export function deleteFavoris (app : any) {
   app.delete('/api/favoris', verifyToken, checkBodyCreateFavoris, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('DELETE FROM data.favoris where idevent = $1 and iduser = $2;', 

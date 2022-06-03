@@ -1,5 +1,6 @@
 import { IPersonne } from "./personne";
 
+// Interface pour les évènements
 export interface IEvenement {
   id: number;
   nom: string;

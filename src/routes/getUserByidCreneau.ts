@@ -3,6 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { addCreatorAndRefactorUser } from "../utils/users";
 
+/**
+ * Route me permettant de récupérer les utilisateurs abonnées à un créneau à partir de l'id créneau
+ * @param app 
+ */
 export function getUserByIdCreneau (app : any) {
   app.get('/api/users/creneau/:idC', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('select u.iduser, u.username, u.lastname, u.firstname, c.idcreneau, r.reponse  from data.users u, data.creneau c, data.reponses r where c.idcreneau = $1 and r.iduser = u.iduser and c.idcreneau = r.idcreneau;', [req.params.idC])

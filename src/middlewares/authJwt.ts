@@ -2,6 +2,13 @@ import { Request, Response } from "express";
 import * as config from "../configs/auth.config.json"
 const jwt = require("jsonwebtoken");
 
+/**
+ *  Cette fonction me permet de vérifier le token que le client me donne à chaque requête
+ * @param req 
+ * @param res 
+ * @param next 
+ */
+
 export function verifyToken (req: any, res: Response, next: any) {
   let authorizationHeader  = req.headers.authorization;
 

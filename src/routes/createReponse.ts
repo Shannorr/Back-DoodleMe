@@ -4,7 +4,10 @@ import { verifyToken } from "../middlewares/authJwt";
 import { checkBodyCreateReponse } from "../middlewares/reponse";
 import { ajouterUneReponsePositive, enleverUneReponsePositive, getReponseByiduserandidcreneau, updateReponse } from "../utils/reponse";
 
-
+/**
+ * Route me permettant de créer une réponse
+ * @param app 
+ */
 export function createReponse (app : any) {
   app.post('/api/reponse', verifyToken, checkBodyCreateReponse, async (req : Request, res: Response, next : any ) => {
 

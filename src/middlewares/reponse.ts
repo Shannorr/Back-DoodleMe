@@ -1,5 +1,12 @@
 import { Request, Response } from "express";
 
+/**
+ * Cette fonction me permet de vérifier que le body de la requete récupérer est correct
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
 export function checkBodyCreateReponse(req: Request, res: Response, next: any) {
     if (Object.keys(req.body).length === 0 && req.body.constructor === Object ) {
         return res.status(400).send({ msg : "Votre body est vide"})

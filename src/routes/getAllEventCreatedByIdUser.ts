@@ -4,6 +4,10 @@ import { verifyToken } from "../middlewares/authJwt";
 import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
 
+/**
+ * Route me permettant de récupérer tout les évènements créer par un utilisateur
+ * @param app 
+ */
 export function getAllEventCreatedByIdUser (app : any) {
   app.get('/api/events/created/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('select distinct e.* from data.events e where idcreator = $1', [req.params.idU])

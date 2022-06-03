@@ -3,6 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt"; 
 
 
+/**
+ * Route me permettant de cloturer un event
+ * @param app 
+ */
 export function closeEvent (app : any) {
   app.patch('/api/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser(

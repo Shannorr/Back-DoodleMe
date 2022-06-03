@@ -3,7 +3,11 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { checkBodyCreateCreneau } from "../middlewares/creneau";
 
-
+/**
+ * Route me permettant de créer un créneau
+ * @param app 
+ * @returns un json sou format {msg : message, data : données que l'on a insérer}
+ */
 export function createCreneau (app : any) {
   app.post('/api/creneau', verifyToken, checkBodyCreateCreneau, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('INSERT INTO data.creneau (date, heureDebut, nbRepPositive, idEvent) VALUES ($1, $2, 0, $3)', 

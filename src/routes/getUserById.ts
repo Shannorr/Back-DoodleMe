@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 
+/**
+ * Route me permettant de récupérer un utilisateur à partir de son id
+ * @param app 
+ */
 export function getUserById (app : any) {
   app.get('/api/users/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.users where idUser = $1', [req.params.idU])

@@ -1,6 +1,14 @@
 import { Request, Response } from "express";
 import { querywithparametersUser } from "../db/postgre";
 
+
+/**
+ * Me permet de vérifier si le nom d'utilisateur est déjà présent dans la bd
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
 export async function checkDuplicateUsername (req: Request, res: Response, next: any) {
   const t = await querywithparametersUser("Select * from data.users where username = $1", [req.body.username]);
   if (t.rows[0]) {
@@ -10,6 +18,13 @@ export async function checkDuplicateUsername (req: Request, res: Response, next:
   }
 }
 
+/**
+ * Permet de vérifier les paramètres du body
+ * @param req 
+ * @param res 
+ * @param next 
+ * @returns 
+ */
 export function checkBody(req: Request, res: Response, next: any) {
   if (Object.keys(req.body).length === 0 && req.body.constructor === Object ) {
     return res.status(400).send({ msg : "Votre body est vide"})

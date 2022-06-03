@@ -4,7 +4,10 @@ import { verifyToken } from "../middlewares/authJwt";
 import { addCreatorAndRefactorCreneau } from "../utils/creneau";
 import { addCreatorAndRefactor } from "../utils/users";
 
-
+/**
+ * Route me permettant de récupérer le créneau avec le plus grand nombre de réponse
+ * @param app 
+ */
 export function getCreneauWithHighestResponse (app : any) {
   app.get('/api/creneau/winner/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('select e.* from data.creneau e where e.idevent = $1 AND e.nbreppositive = (SELECT MAX(nbreppositive) FROM data.creneau where idevent = e.idevent);', [req.params.idE])

@@ -3,7 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
-
+/**
+ * Route me permettant de récupérer le dernier event par id utilisateur 
+ * @param app 
+ */
 export function getLastEventByIdUser (app : any) {
   app.get('/api/events/last/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('select distinct e.* from data.events e where idcreator = $1 and idevent = (Select Max(idevent) from data.events e2 where e2.idcreator = e.idcreator )', [req.params.idU])

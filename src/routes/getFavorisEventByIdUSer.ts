@@ -4,6 +4,10 @@ import { verifyToken } from "../middlewares/authJwt";
 import { IEvenementFavori } from "../models/favorisEvent";
 import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
+/**
+ * Route me permettant de récupérer les favoris par id utilisateur
+ * @param app 
+ */
 export function getFavorisEventByIdUser (app : any) {
   app.get('/api/favoris/event/:idU', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('select u.iduser, e.idevent, e.name, e.description, e.cloture, e.idcreator from data.users u, data.events e, data.favoris f where u.iduser = $1 and f.iduser = u.iduser and e.idevent = f.idevent;', [req.params.idU])

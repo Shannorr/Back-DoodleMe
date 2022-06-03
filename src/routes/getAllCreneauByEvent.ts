@@ -3,7 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { addCreatorAndRefactorCreneau } from "../utils/creneau";
 
-
+/**
+ * Route me permettant de récupérer tout les créneaux d'un évènement à partir de son id
+ * @param app 
+ */
 export function getAllCreneauByEvent (app : any) {
   app.get('/api/creneau/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.creneau where idEvent = $1', [req.params.idE])

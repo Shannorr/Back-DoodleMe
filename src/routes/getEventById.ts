@@ -4,6 +4,10 @@ import { verifyToken } from "../middlewares/authJwt";
 import { addCreator, addCreatorAndRefactor } from "../utils/users";
 
 
+/**
+ * Route me permettant de récupérer un event pas son id
+ * @param app 
+ */
 export function getEventById (app : any) {
   app.get('/api/events/:idE', verifyToken, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('SELECT * FROM data.events where idEvent = $1', [req.params.idE])

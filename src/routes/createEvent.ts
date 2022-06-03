@@ -3,7 +3,10 @@ import { querywithparametersUser } from "../db/postgre";
 import { verifyToken } from "../middlewares/authJwt";
 import { checkBodyCreateEvent } from "../middlewares/event";  
 
-
+/**
+ * Route Me permettant de créer un events
+ * @param app 
+ */
 export function createEvent (app : any) {
   app.post('/api/events', verifyToken, checkBodyCreateEvent, (req : Request, res: Response, next : any ) => {
     querywithparametersUser('INSERT INTO data.events (name, description, cloture, idcreator) VALUES ($1, $2, $3, $4)', 

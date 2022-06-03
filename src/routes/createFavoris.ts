@@ -5,6 +5,9 @@ import { checkBodyCreateFavoris } from "../middlewares/favoris";
 import { getFavoris } from "../utils/favoris";
 
 
+/**
+ * Route me permettant de créer un favoris
+ */
 export function createFavoris (app : any) {
   // 
   app.post('/api/favoris', verifyToken, checkBodyCreateFavoris, async (req : Request, res: Response, next : any ) => {
