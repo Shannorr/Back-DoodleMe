@@ -13,7 +13,6 @@ export function createReponse (app : any) {
 
     // si ça n'existe pas en bd on rajoute et en fonction de la réponse on fait + ou - 
     const response = await getReponseByiduserandidcreneau(req.body.idUser, req.body.idCreneau);
-    console.log(response);
     if (!response) {
       querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', 
       [req.body.idCreneau, req.body.idUser, req.body.reponse]
@@ -22,6 +21,7 @@ export function createReponse (app : any) {
         if (req.body.reponse === true) {
           ajouterUneReponsePositive(req.body.idCreneau);
         }
+        
         // gérer le nombre de réponse positive
         return res.status(200).json({
           msg: "Reponse created",
@@ -42,7 +42,7 @@ export function createReponse (app : any) {
       } else {
         if (req.body.reponse === true) {
           ajouterUneReponsePositive(req.body.idCreneau);
-          updateReponse(req.body.idCreneau, req.body.idUser, req.body.reponse);
+          updateReponse(req.body.idUser, req.body.idCreneau,  req.body.reponse);
           return res.status(200).json({
             msg: "Event modfier +1",
             data: {

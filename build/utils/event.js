@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEventById = void 0;
+exports.getEventIdByName = exports.getEventById = void 0;
 const postgre_1 = require("../db/postgre");
 const users_1 = require("./users");
 function getEventById(idevent) {
@@ -33,3 +33,12 @@ function getEventById(idevent) {
     });
 }
 exports.getEventById = getEventById;
+function getEventIdByName(name) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const str = 'select * from data.events where name = $1';
+        const res = yield postgre_1.querywithparametersUser(str, [name]);
+        // console.log(res);
+        return res.rows[0];
+    });
+}
+exports.getEventIdByName = getEventIdByName;

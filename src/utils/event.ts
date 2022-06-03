@@ -22,3 +22,11 @@ export async function getEventById (idevent: string) : Promise<IEvenement>{
     }
   };
 }
+
+export async function getEventIdByName (name: string) : Promise<any>{
+  const str = 'select * from data.events where name = $1';
+  const res = await querywithparametersUser(str, [name]);
+
+  // console.log(res);
+  return res.rows[0];
+}

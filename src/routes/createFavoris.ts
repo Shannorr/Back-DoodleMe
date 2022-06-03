@@ -31,12 +31,12 @@ export function createFavoris (app : any) {
         const message = 'event n\' a pas pu etre rajouter'
         console.log(error)
         if (error.code === "23505") {
-          res.status(501).json({msg : "Favoris déjà ajouté"});
+          res.status(304).json({msg : "Favoris déjà ajouté"});
         }
         res.status(501).json({message, data : error});
       })
     } else {
-      res.status(501).json({msg : "Favoris déjà ajouté"});
+      res.status(304).json({msg : "Favoris déjà ajouté"});
     }
   }) 
 } 

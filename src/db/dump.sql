@@ -22,6 +22,7 @@ CREATE TABLE data.events
   description VARCHAR(120),
   cloture boolean,
   idcreator INTEGER,
+  unique(name),
   CONSTRAINT fk_events_idUser FOREIGN KEY (idcreator) REFERENCES data.users(idUser)
 );
 

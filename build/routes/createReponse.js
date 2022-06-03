@@ -18,7 +18,6 @@ function createReponse(app) {
     app.post('/api/reponse', authJwt_1.verifyToken, reponse_1.checkBodyCreateReponse, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
         // si ça n'existe pas en bd on rajoute et en fonction de la réponse on fait + ou - 
         const response = yield reponse_2.getReponseByiduserandidcreneau(req.body.idUser, req.body.idCreneau);
-        console.log(response);
         if (!response) {
             postgre_1.querywithparametersUser('INSERT INTO data.reponses (idCreneau, idUser, reponse) VALUES ($1, $2, $3)', [req.body.idCreneau, req.body.idUser, req.body.reponse])
                 .then(() => {
@@ -47,7 +46,7 @@ function createReponse(app) {
             else {
                 if (req.body.reponse === true) {
                     reponse_2.ajouterUneReponsePositive(req.body.idCreneau);
-                    reponse_2.updateReponse(req.body.idCreneau, req.body.idUser, req.body.reponse);
+                    reponse_2.updateReponse(req.body.idUser, req.body.idCreneau, req.body.reponse);
                     return res.status(200).json({
                         msg: "Event modfier +1",
                         data: {
