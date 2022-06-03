@@ -2,6 +2,11 @@ import { querywithparametersUser } from "../db/postgre";
 import { IEvenement } from "../models/event";
 import { getUserbyId } from "./users";
 
+/**
+ * récupère l'event par son id dans las bd
+ * @param idevent 
+ * @returns 
+ */
 
 export async function getEventById (idevent: string) : Promise<IEvenement>{
   const str = 'select * from data.events where idevent = $1';
@@ -23,6 +28,11 @@ export async function getEventById (idevent: string) : Promise<IEvenement>{
   };
 }
 
+/**
+ * je récupère un évènement à partir de son nom dans la bd
+ * @param name 
+ * @returns 
+ */
 export async function getEventIdByName (name: string) : Promise<any>{
   const str = 'select * from data.events where name = $1';
   const res = await querywithparametersUser(str, [name]);

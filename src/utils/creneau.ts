@@ -4,12 +4,12 @@ import { IEvenement } from "../models/event";
 import { getUserById } from "../routes/getUserById";
 import { getEventById } from "./event";
 
-export async function getIdCreneauBy (iduser : string, idevent: string) : Promise<any>{
-  const str = 'select * from data.favoris';
-  const res = await querywithparametersUser(str, [idevent, iduser]);
-  return res.rows[0];
-}
 
+/**
+ * Me permets de mieux renvoyer les données de la bds et de former des objets d'un type en particulier avant de l'envyer au front
+ * @param rows 
+ * @returns 
+ */
 export async function addCreatorAndRefactorCreneau (rows : any[]) {
 
   const returnrep : ICreneau[] = [];  
